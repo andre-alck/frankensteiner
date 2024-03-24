@@ -6,8 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-import exceptions.FrankensteinerCommonExceptionFactory;
-import exceptions.FrankesteinerCommonException;
+import app.exceptions.FrankensteinerCommonExceptionFactory;
+import app.exceptions.FrankesteinerCommonException;
+
 
 class FrankensteinerCommonExceptionFactoryTest {
 

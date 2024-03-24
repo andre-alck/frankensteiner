@@ -1,6 +1,6 @@
 package app;
 
-import exceptions.FrankesteinerCommonException;
+import app.exceptions.FrankesteinerCommonException;
 
 public class FrankensteinerCommonExceptionImpl extends FrankesteinerCommonException {
 	public FrankensteinerCommonExceptionImpl() {

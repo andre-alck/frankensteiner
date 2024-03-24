@@ -1,4 +1,4 @@
-package exceptions;
+package app.exceptions;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

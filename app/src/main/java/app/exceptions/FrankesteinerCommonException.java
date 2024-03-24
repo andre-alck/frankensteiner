@@ -1,4 +1,4 @@
-package exceptions; 
+package app.exceptions;
 
 public abstract class FrankesteinerCommonException extends RuntimeException {
     public static final String MESSAGE_OR_CAUSE_OF_EXCEPTION_UNDEFINED = "Message or cause of exception undefined.";

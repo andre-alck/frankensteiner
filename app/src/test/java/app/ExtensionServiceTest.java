@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import exceptions.EmptyExtensionException;
-import exceptions.UnsupportedExtensionException;
+import app.exceptions.EmptyExtensionException;
+import app.exceptions.UnsupportedExtensionException;
 
 public class ExtensionServiceTest {
 	@ParameterizedTest

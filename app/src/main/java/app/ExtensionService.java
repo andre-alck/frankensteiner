@@ -1,7 +1,7 @@
 package app;
 
-import exceptions.EmptyExtensionException;
-import exceptions.UnsupportedExtensionException;
+import app.exceptions.EmptyExtensionException;
+import app.exceptions.UnsupportedExtensionException;
 
 public class ExtensionService {
     protected static void checkIfExtensionIsValid(String extension) {

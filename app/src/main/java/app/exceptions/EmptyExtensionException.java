@@ -1,4 +1,4 @@
-package exceptions;
+package app.exceptions;
 
 public class EmptyExtensionException extends FrankesteinerCommonException {
 	private static final long serialVersionUID = 1L;
