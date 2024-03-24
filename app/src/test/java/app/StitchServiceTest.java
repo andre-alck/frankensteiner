@@ -1,6 +1,7 @@
 package app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -29,11 +30,19 @@ class StitchServiceTest {
 	}
 
 	@Test
-	void givenUnsupportedExtension_whenIsExtensionUnsupportedMethodIsCalled_thenShouldReturnTrue() {
+	void givenSupportedExtension_whenCheckingSupport_shouldReturnFalse() {
 		final String extension = "abc";
 		StitchService s = new StitchServiceImpl(extension, null);
 
 		assertTrue(s.isExtensionUnsupported());
+	}
+
+	@Test
+	void givenUnsupportedExtension_whenCheckingSupport_shouldReturnFalse() {
+		final String extension = "sql";
+		StitchService s = new StitchServiceImpl(extension, null);
+
+		assertFalse(s.isExtensionUnsupported());
 	}
 
 }
