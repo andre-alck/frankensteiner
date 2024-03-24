@@ -28,3 +28,11 @@ replay_pid*
 
 # Ignore Gradle build output directory
 build
+.project
+.settings/org.eclipse.buildship.core.prefs
+app/.classpath
+app/.project
+app/.settings/org.eclipse.buildship.core.prefs
+app/bin/main/.gitignore
+app/bin/test/.gitignore
+.gitignore
