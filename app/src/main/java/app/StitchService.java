@@ -4,14 +4,12 @@ public abstract class StitchService {
 	private String extension;
 	private String path;
 
-	private final static String DOT = ".";
+	private static final String DOT = ".";
 	private static final int INDEX_NOT_FOUND = -1;
 
 	public StitchService(String extension, String path) {
 		this.setExtension(extension);
 		this.setPath(path);
-
-		this.checkIfExtensionIsValid();
 	}
 
 	protected void checkIfExtensionIsValid() {
@@ -22,7 +20,7 @@ public abstract class StitchService {
 		}
 
 		if (this.isExtensionUnsupported()) {
-			throw new RuntimeException("fixme - add custom exception for unsupported extension");
+			throw new UnsupportedExtensionException();
 		}
 	}
 
@@ -39,8 +37,7 @@ public abstract class StitchService {
 	}
 
 	protected boolean isExtensionUnsupported() {
-//        throw new RuntimeException("missing impl!");
-		return false;
+		return !Extensions.isElementExistent(this.getExtension());
 	}
 
 	protected String getExtension() {
