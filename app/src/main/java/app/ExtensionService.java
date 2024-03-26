@@ -4,7 +4,7 @@ import app.exceptions.EmptyExtensionException;
 import app.exceptions.UnsupportedExtensionException;
 
 public class ExtensionService {
-    protected static void checkIfExtensionIsValid(String extension) {
+    public static void checkIfExtensionIsValid(String extension) {
         String extensionWithNoDot = StringUtils.removeDotIfNeeded(extension);
 
 		if (StringUtils.isContentEmpty(extensionWithNoDot)) {

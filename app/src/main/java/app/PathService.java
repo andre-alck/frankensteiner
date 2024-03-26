@@ -6,14 +6,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import app.exceptions.InexistentPathException;
+import app.exceptions.InsufficientAmountOfFiles;
+
 public class PathService {
 
-	public static boolean isPathExistent(String path) {
-		Path directoryPath = Paths.get(path);
-		return Files.isDirectory(directoryPath);
-	}
+	public static void checkIfPathIsValid(String extension, String path) {
+	 	if(!isFileCountWithExtensionMoreThanOne(extension, path)) {
+	 		throw new InsufficientAmountOfFiles();
+	 	}
+	 }
 
-	public static boolean isFileCountWithExtensionMoreThanOne(String extension, String path) {
+	protected static boolean isFileCountWithExtensionMoreThanOne(String extension, String path) {
+		if(!PathService.isPathExistent(path)) {
+			throw new InexistentPathException();
+		}
+
 		File folder = new File(path);
 		FileFilter fileFilter = PathService.getFileFilter(extension);
 		File[] files = folder.listFiles(fileFilter);
@@ -26,6 +34,11 @@ public class PathService {
 		}
 
 		return fileCount > 1;
+	}
+
+	protected static boolean isPathExistent(String path) {
+		Path directoryPath = Paths.get(path);
+		return Files.isDirectory(directoryPath);
 	}
 
 	private static FileFilter getFileFilter(String extension) {
