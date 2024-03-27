@@ -1,5 +1,10 @@
 package app;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import app.exceptions.UnsupportedExtensionException;
+
 public enum Extensions {
 	SQL, TXT;
 
@@ -11,5 +16,15 @@ public enum Extensions {
 		}
 
 		return false;
+	}
+
+	public static Extensions getElementBasedOnInputText(String inputText) {
+		try {
+			return List.of(Extensions.values()).stream().filter(t -> t.name().equalsIgnoreCase(inputText)).findFirst()
+					.get();
+		} catch (NoSuchElementException e) {
+			throw new UnsupportedExtensionException(e.getMessage(), e.getCause());
+		}
+
 	}
 }
