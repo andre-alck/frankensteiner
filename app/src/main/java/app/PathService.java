@@ -12,13 +12,13 @@ import app.exceptions.InsufficientAmountOfFiles;
 public class PathService {
 
 	public static void checkIfPathIsValid(String extension, String path) {
-	 	if(!isFileCountWithExtensionMoreThanOne(extension, path)) {
-	 		throw new InsufficientAmountOfFiles();
-	 	}
-	 }
+		if (!isFileCountWithExtensionMoreThanOne(extension, path)) {
+			throw new InsufficientAmountOfFiles();
+		}
+	}
 
 	protected static boolean isFileCountWithExtensionMoreThanOne(String extension, String path) {
-		if(!PathService.isPathExistent(path)) {
+		if (!PathService.isPathExistent(path)) {
 			throw new InexistentPathException();
 		}
 
@@ -26,14 +26,7 @@ public class PathService {
 		FileFilter fileFilter = PathService.getFileFilter(extension);
 		File[] files = folder.listFiles(fileFilter);
 
-		int fileCount = 0;
-		for (int i = 0; i < files.length; i++) {
-			if (files[i].getName().endsWith(extension)) {
-				fileCount++;
-			}
-		}
-
-		return fileCount > 1;
+		return files.length > 1;
 	}
 
 	protected static boolean isPathExistent(String path) {

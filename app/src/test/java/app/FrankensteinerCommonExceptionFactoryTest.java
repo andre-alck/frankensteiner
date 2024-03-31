@@ -17,8 +17,7 @@ class FrankensteinerCommonExceptionFactoryTest {
 		String emptyMessage = null;
 		Throwable emptyCause = null;
 
-		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory
-				.newException(emptyMessage, emptyCause, FrankensteinerCommonExceptionImpl.class);
+		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory.newException(emptyMessage, emptyCause, FrankensteinerCommonExceptionImpl.class);
 
 		assertEquals(e.getMessage(), FrankesteinerCommonException.MESSAGE_OR_CAUSE_OF_EXCEPTION_UNDEFINED);
 	}
@@ -28,8 +27,7 @@ class FrankensteinerCommonExceptionFactoryTest {
 		String nonEmptyMessage = "Non-empty message";
 		Throwable emptyCause = null;
 
-		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory
-				.newException(nonEmptyMessage, emptyCause, FrankensteinerCommonExceptionImpl.class);
+		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory.newException(nonEmptyMessage, emptyCause, FrankensteinerCommonExceptionImpl.class);
 
 		assertEquals(e.getMessage(), FrankesteinerCommonException.MESSAGE_OR_CAUSE_OF_EXCEPTION_UNDEFINED);
 	}
@@ -39,8 +37,7 @@ class FrankensteinerCommonExceptionFactoryTest {
 		String emptyMessage = null;
 		Throwable nonEmptyCause = new Throwable();
 
-		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory
-				.newException(emptyMessage, nonEmptyCause, FrankensteinerCommonExceptionImpl.class);
+		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory.newException(emptyMessage, nonEmptyCause, FrankensteinerCommonExceptionImpl.class);
 
 		assertEquals(e.getMessage(), FrankesteinerCommonException.MESSAGE_OR_CAUSE_OF_EXCEPTION_UNDEFINED);
 	}
@@ -50,8 +47,7 @@ class FrankensteinerCommonExceptionFactoryTest {
 		String emptyMessage = "Non-empty message";
 		Throwable nonEmptyCause = new Throwable();
 
-		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory
-				.newException(emptyMessage, nonEmptyCause, FrankensteinerCommonExceptionImpl.class);
+		FrankensteinerCommonExceptionImpl e = (FrankensteinerCommonExceptionImpl) FrankensteinerCommonExceptionFactory.newException(emptyMessage, nonEmptyCause, FrankensteinerCommonExceptionImpl.class);
 
 		assertNotEquals(e.getMessage(), FrankesteinerCommonException.MESSAGE_OR_CAUSE_OF_EXCEPTION_UNDEFINED);
 		assertNotNull(e.getCause());

@@ -5,16 +5,12 @@ public class StringUtils {
 	public static final int INDEX_NOT_FOUND = -1;
 	public final static String WHITESPACE = "";
 
-	public static boolean isContentEmpty(Object content) {
+	public static boolean isContentEmpty(String content) {
 		if (content == null) {
 			return true;
 		}
 
-		if (content instanceof String) {
-			return ((String) content).trim().equals(StringUtils.WHITESPACE);
-		}
-
-		return false;
+		return content.trim().equals(StringUtils.WHITESPACE);
 	}
 
 	public static String removeDotIfNeeded(String content) {
