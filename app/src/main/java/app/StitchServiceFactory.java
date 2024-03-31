@@ -7,7 +7,7 @@ public class StitchServiceFactory {
 			StitchServiceSQLImpl.class, Extensions.TXT, StitchServiceTXTImpl.class);
 
 	public static StitchService getImplementation(String validInput) {
-		final Extensions extension = Extensions.getElementBasedOnInputText(validInput);
+		final Extensions extension = ExtensionService.getElementBasedOnInputText(validInput);
 		final Class<? extends StitchService> serviceClass = StitchServiceFactory.extensionsImplementations.get(extension);
 		StitchService serviceImpl = null;
 		try {
