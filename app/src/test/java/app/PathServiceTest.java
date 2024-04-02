@@ -35,23 +35,19 @@ class PathServiceTest {
 	@Test
 	void givenSearchForExtensionInPath_whenThereAreAtLeastTwoFilesWithThatExtension_thenReturnTrue() {
 		final String extension = "sql";
-		assertTrue(PathService.isFileCountWithExtensionMoreThanOne(extension,
-				"/home/linkedrh/Desktop/PathServiceTest/givenSearchForExtensionInPath_whenThereAreAtLeastTwoFilesWithThatExtension_thenReturnTrue"));
+		assertTrue(PathService.isFileCountWithExtensionMoreThanOne(extension, "/home/linkedrh/Desktop/PathServiceTest/givenSearchForExtensionInPath_whenThereAreAtLeastTwoFilesWithThatExtension_thenReturnTrue"));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "txt", "nonexistent" })
-	void givenSearchForExtensionInPath_whenThereAreNotAtLeastTwoFilesWithThatExtension_thenReturnFalse(
-			String extension) {
-		assertFalse(PathService.isFileCountWithExtensionMoreThanOne(extension,
-				"/home/linkedrh/Desktop/PathServiceTest/givenSearchForExtensionInPath_whenThereAreNotAtLeastTwoFilesWithThatExtension_thenReturnFalse"));
+	void givenSearchForExtensionInPath_whenThereAreNotAtLeastTwoFilesWithThatExtension_thenReturnFalse(String extension) {
+		assertFalse(PathService.isFileCountWithExtensionMoreThanOne(extension, "/home/linkedrh/Desktop/PathServiceTest/givenSearchForExtensionInPath_whenThereAreNotAtLeastTwoFilesWithThatExtension_thenReturnFalse"));
 	}
 
 	@Test
 	void givenFileCountExtension_whenPathDoesNotHaveMoreThanOneFileWithThatExtensoin_thenShouldThrowException() {
 		assertThrows(InsufficientAmountOfFiles.class, () -> {
-			PathService.checkIfPathIsValid("txt",
-					"/home/linkedrh/Desktop/PathServiceTest/givenSearchForExtensionInPath_whenThereAreNotAtLeastTwoFilesWithThatExtension_thenReturnFalse");
+			PathService.checkIfPathIsValid("txt", "/home/linkedrh/Desktop/PathServiceTest/givenSearchForExtensionInPath_whenThereAreNotAtLeastTwoFilesWithThatExtension_thenReturnFalse");
 		});
 	}
 }

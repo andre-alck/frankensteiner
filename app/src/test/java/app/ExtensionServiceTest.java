@@ -16,8 +16,7 @@ import app.exceptions.UnsupportedExtensionException;
 public class ExtensionServiceTest {
 	@ParameterizedTest
 	@ValueSource(strings = { StringUtils.DOT, StringUtils.WHITESPACE })
-	void givenExtensionContainingOnlyWhitespaceOrDot_whenCheckingIfExtensionIsValid_shouldThrowException(
-			String extension) {
+	void givenExtensionContainingOnlyWhitespaceOrDot_whenCheckingIfExtensionIsValid_shouldThrowException(String extension) {
 		Exception e = assertThrows(EmptyExtensionException.class, () -> {
 			ExtensionService.checkIfExtensionIsValid(extension);
 		});
