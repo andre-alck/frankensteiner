@@ -8,37 +8,54 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class StitchService {
 	protected abstract Extensions getExtension();
 
+	//	public void stitch(String folderPath) {}
+	//	protected abstract void writeFile();
+
 	public List<FileData> readFiles(String folderPath) {
 		File folder = new File(folderPath);
-		List<File> files = this.listFilesBasedOnExtension(folder);
-		return this.fillList(files);
+		List<File> allFilesOfGivenExtension = this.listFilesBasedOnExtension(folder);
+		return this.getFileDataForEachFile(allFilesOfGivenExtension);
 	}
 
 	private List<File> listFilesBasedOnExtension(File folder) {
-		return Stream.of(folder.listFiles()).filter(eachFile -> eachFile.getName().endsWith(this.getExtension().name()))
+		File[] filesInGivenFolder = folder.listFiles();
+		return Stream.of(filesInGivenFolder).filter(this.isFileExtensionEqualToClassImplementationExtension())
 				.collect(Collectors.toList());
 	}
 
-	private List<FileData> fillList(List<File> files) {
-		List<FileData> listContainingDataFromEachFile = new ArrayList<>();
-		files.forEach(t -> {
+	private Predicate<File> isFileExtensionEqualToClassImplementationExtension() {
+		String extensionName = this.getExtension().name();
+		return eachFile -> eachFile.getName().endsWith(extensionName.toUpperCase())
+				|| eachFile.getName().endsWith(extensionName.toLowerCase());
+	}
+
+	private List<FileData> getFileDataForEachFile(List<File> files) {
+		List<FileData> dataFromEachFile = new ArrayList<>();
+		files.forEach(file -> {
 			try {
-				StringBuilder content = this.readFileContent(new FileInputStream(t));
-				FileData f = new FileData();
-				f.setContent(content);
-				listContainingDataFromEachFile.add(null);
+				this.getFileDataFromFile(file, dataFromEachFile);
 			} catch (Exception e) {
 				Logger.log(e);
 			}
 		});
+		
+		return dataFromEachFile;
+	}
 
-		return listContainingDataFromEachFile;
+	private void getFileDataFromFile(File file, List<FileData> dataFromEachFile) throws IOException {
+		FileData fileData = new FileData();
+
+		StringBuilder fileContent = this.readFileContent(new FileInputStream(file));
+		fileData.setContent(fileContent);
+
+		dataFromEachFile.add(fileData);
 	}
 
 	private StringBuilder readFileContent(InputStream inputStream) throws IOException {
