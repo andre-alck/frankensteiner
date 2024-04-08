@@ -36,3 +36,4 @@ app/.settings/org.eclipse.buildship.core.prefs
 app/bin/main/.gitignore
 app/bin/test/.gitignore
 .gitignore
+.vscode/
