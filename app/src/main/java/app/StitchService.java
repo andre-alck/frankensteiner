@@ -15,10 +15,14 @@ import java.util.stream.Stream;
 public abstract class StitchService {
 	protected abstract Extensions getExtension();
 
-	//	public void stitch(String folderPath) {}
-	//	protected abstract void writeFile();
+	protected abstract void writeFile(List<FileData> filesData, SortingWay sortingWay);
 
-	public List<FileData> readFiles(String folderPath) {
+	public void stitch(String folderPath, SortingWay sortingWay) {
+		List<FileData> filesData = this.readFiles(folderPath);
+		this.writeFile(filesData, sortingWay);
+	}
+
+	protected List<FileData> readFiles(String folderPath) {
 		File folder = new File(folderPath);
 		List<File> allFilesOfGivenExtension = this.listFilesBasedOnExtension(folder);
 		return this.getFileDataForEachFile(allFilesOfGivenExtension);
@@ -32,8 +36,7 @@ public abstract class StitchService {
 
 	private Predicate<File> isFileExtensionEqualToClassImplementationExtension() {
 		String extensionName = this.getExtension().name();
-		return eachFile -> eachFile.getName().endsWith(extensionName.toUpperCase())
-				|| eachFile.getName().endsWith(extensionName.toLowerCase());
+		return eachFile -> eachFile.getName().toLowerCase().endsWith(extensionName.toLowerCase());
 	}
 
 	private List<FileData> getFileDataForEachFile(List<File> files) {
@@ -45,7 +48,7 @@ public abstract class StitchService {
 				Logger.log(e);
 			}
 		});
-		
+
 		return dataFromEachFile;
 	}
 
