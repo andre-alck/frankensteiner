@@ -23,10 +23,22 @@ public class PathService {
 		}
 
 		File folder = new File(path);
-		FileFilter fileFilter = PathService.getFileFilter(extension);
+		FileFilter fileFilter = PathService.getFileFilter(FileTypeFilter.EXTENSION, extension);
 		File[] files = folder.listFiles(fileFilter);
 
 		return files.length > 1;
+	}
+
+	protected static boolean isFileExistent(String name, String path) {
+		if (!PathService.isPathExistent(path)) {
+			throw new InexistentPathException();
+		}
+
+		File folder = new File(path);
+		FileFilter fileFilter = PathService.getFileFilter(FileTypeFilter.NAME, name);
+		File[] files = folder.listFiles(fileFilter);
+
+		return files.length > 0;
 	}
 
 	protected static boolean isPathExistent(String path) {
@@ -34,11 +46,19 @@ public class PathService {
 		return Files.isDirectory(directoryPath);
 	}
 
-	private static FileFilter getFileFilter(String extension) {
+	private static FileFilter getFileFilter(FileTypeFilter filterType, Object filter) {
 		return new FileFilter() {
 			@Override
 			public boolean accept(File pathname) {
-				return pathname.getName().endsWith(extension);
+				if (filterType.equals(FileTypeFilter.EXTENSION)) {
+					return pathname.getName().endsWith((String) filter);
+				}
+
+				if (filterType.equals(FileTypeFilter.NAME)) {
+					return pathname.getName().contains((String) filter);
+				}
+
+				return false;
 			}
 		};
 	}

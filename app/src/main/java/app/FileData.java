@@ -13,6 +13,10 @@ public class FileData implements Comparable<FileData> {
 		this.sortingWay = sortingWay;
 	}
 
+	public void setSortingWay(SortingWay sortingWay) {
+		this.sortingWay = sortingWay;
+	}
+
 	@Override
 	public int compareTo(FileData otherFileData) {
 		return this.sortingWay.sort(this, otherFileData);

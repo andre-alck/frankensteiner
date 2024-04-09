@@ -6,7 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -16,6 +19,16 @@ public abstract class StitchService {
 	protected abstract Extensions getExtension();
 
 	protected abstract void writeFile(List<FileData> filesData, SortingWay sortingWay);
+
+	public String getResultFileName() {
+		return this.getFormattedDate() + this.getExtension().name();
+	}
+
+	protected String getFormattedDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
 
 	public void stitch(String folderPath, SortingWay sortingWay) {
 		List<FileData> filesData = this.readFiles(folderPath);
