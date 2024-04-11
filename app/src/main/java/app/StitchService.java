@@ -21,7 +21,14 @@ public abstract class StitchService {
 	protected abstract void writeFile(List<FileData> filesData, SortingWay sortingWay);
 
 	public String getResultFileName() {
-		return this.getFormattedDate() + this.getExtension().name();
+		String name = this.getFormattedDate() + StringUtils.DOT + this.getExtension().name().toLowerCase();
+		String validatedName = this.replaceInvalidCharacters(name);
+		return validatedName;
+	}
+
+	private String replaceInvalidCharacters(String content) {
+		String validatedName = content.replaceAll(":", "h").replaceAll("/", "_");
+		return validatedName;
 	}
 
 	protected String getFormattedDate() {
