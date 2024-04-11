@@ -26,6 +26,20 @@ class PathServiceTest {
 	}
 
 	@Test
+	void givenSearchForFile_whenFileExists_thenReturnTrue() {
+		final String existingFile = "somefile.txt";
+		final String existingPath = "/home/linkedrh/Desktop/PathServiceTest";
+		assertTrue(PathService.isFileExistent(existingFile, existingPath));
+	}
+
+	@Test
+	void givenSearchForFile_whenFileDoesNotExists_thenReturnFalse() {
+		final String nonExistingFile = "inexistentfile.abc";
+		final String existingPath = "/home/linkedrh/Desktop/PathServiceTest";
+		assertFalse(PathService.isFileExistent(nonExistingFile, existingPath));
+	}
+
+	@Test
 	void givenSearchForExtensionInPath_whenPathDoesNotExist_thenShouldThrowException() {
 		assertThrows(InexistentPathException.class, () -> {
 			PathService.isFileCountWithExtensionMoreThanOne(null, "/home/linkedrh/Desktop/PathServiceTest/fakepath");
