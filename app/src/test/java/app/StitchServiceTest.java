@@ -1,6 +1,8 @@
 package app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doCallRealMethod;
@@ -55,6 +57,16 @@ class StitchServiceTest {
 		String expectedResultFileName = now + "." + extension.name().toLowerCase();
 
 		assertEquals(expectedResultFileName, resultFileName);
+	}
+
+	@Test
+	void givenFileData_whenConcatenatingContentFromAllFiles_shouldReturnStringWithContent() {
+		String[] contents = { "s", "t", "r", "i", "n", "g" };
+		List<FileData> filesData = StitchServiceTestUtils.generateListOfFilesWithSpecificContent(contents);
+		for (int i = 0; i < contents.length; i++) {
+			assertTrue(filesData.get(i).getName().equals(StitchServiceTestUtils.NAME_IDENTIFIER + contents[i]));
+			assertTrue(filesData.get(i).getContent().toString().equals(StitchServiceTestUtils.CONTENT_IDENTIFIER + contents[i]));
+		}
 	}
 
 }
