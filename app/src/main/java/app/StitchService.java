@@ -26,15 +26,19 @@ public abstract class StitchService {
 		return validatedName;
 	}
 
+	protected String getFormattedDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+
 	private String replaceInvalidCharacters(String content) {
 		String validatedName = content.replaceAll(":", "h").replaceAll("/", "_");
 		return validatedName;
 	}
 
-	protected String getFormattedDate() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		return dateFormat.format(date);
+	protected String getConcatenatedStringThroughFileData(List<FileData> filesData) {
+		return filesData.stream().map(FileData::getContent).collect(Collectors.joining()).replace("\n", "");
 	}
 
 	public void stitch(String folderPath, SortingWay sortingWay) {
@@ -77,6 +81,7 @@ public abstract class StitchService {
 
 		StringBuilder fileContent = this.readFileContent(new FileInputStream(file));
 		fileData.setContent(fileContent);
+		fileData.setName(file.getName());
 
 		dataFromEachFile.add(fileData);
 	}
