@@ -1,9 +1,12 @@
 package app;
 
+import java.time.LocalDateTime;
+
 public class FileData implements Comparable<FileData> {
 	private SortingWay sortingWay;
 	private StringBuilder content;
 	private String name;
+	private LocalDateTime modificationDate;
 
 	public FileData() {
 		this.sortingWay = new AlphabeticalSorting();
@@ -36,6 +39,14 @@ public class FileData implements Comparable<FileData> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public LocalDateTime getModificationDate() {
+		return modificationDate;
+	}
+
+	public void setModificationDate(LocalDateTime modificationDate) {
+		this.modificationDate = modificationDate;
 	}
 
 }

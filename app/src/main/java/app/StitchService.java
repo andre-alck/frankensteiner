@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
@@ -39,6 +41,11 @@ public abstract class StitchService {
 
 	protected String getConcatenatedStringThroughFileData(List<FileData> filesData) {
 		return filesData.stream().map(FileData::getContent).collect(Collectors.joining()).replace("\n", "");
+	}
+	
+	public void sort(List<FileData> filesData, SortingWay sortingWay) {
+		filesData.forEach(f -> f.setSortingWay(sortingWay));
+		Collections.sort(filesData);
 	}
 
 	public void stitch(String folderPath, SortingWay sortingWay) {
@@ -82,7 +89,7 @@ public abstract class StitchService {
 		StringBuilder fileContent = this.readFileContent(new FileInputStream(file));
 		fileData.setContent(fileContent);
 		fileData.setName(file.getName());
-
+		fileData.setModificationDate(new Date(file.lastModified()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
 		dataFromEachFile.add(fileData);
 	}
 
