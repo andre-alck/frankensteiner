@@ -22,12 +22,12 @@ public class StitchServiceTestUtils {
 		return contentFromEachFile;
 	}
 
-	public static List<FileData> getExampleContentFromEachFile() {
+	public static List<FileData> getExampleContentFromEachFile(String extension) {
 		List<FileData> contentFromEachFile = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			FileData f = new FileData();
 			f.setContent(new StringBuilder().append(StitchServiceTestUtils.getRandomString(2)));
-			f.setName(i + ".sql");
+			f.setName(i + "." + extension.toLowerCase());
 			contentFromEachFile.add(f);
 		}
 		return contentFromEachFile;
