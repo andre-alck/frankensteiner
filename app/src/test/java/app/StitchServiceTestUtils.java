@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 public class StitchServiceTestUtils {
 	public static final String CONTENT_IDENTIFIER = "content";
 	public static final String NAME_IDENTIFIER = "name";
+	public static final String STITCHED_FILE_PATH = "/home/linkedrh/Desktop/frankensteiner/app";
 
 	public static List<FileData> generateListOfFilesWithSpecificContent(String[] contents) {
 		List<FileData> contentFromEachFile = new ArrayList<>();
