@@ -22,7 +22,7 @@ public abstract class StitchService {
 
 	protected abstract void writeFile(List<FileData> filesData, SortingWay sortingWay);
 
-	public String getResultFileName() {
+	protected String getResultFileName() {
 		String name = this.getFormattedDate() + StringUtils.DOT + this.getExtension().name().toLowerCase();
 		String validatedName = this.replaceInvalidCharacters(name);
 		return validatedName;
@@ -40,7 +40,7 @@ public abstract class StitchService {
 	}
 
 	protected String getConcatenatedStringThroughFileData(List<FileData> filesData) {
-		return filesData.stream().map(FileData::getContent).collect(Collectors.joining()).replace("\n", "");
+		return filesData.stream().map(FileData::getContent).collect(Collectors.joining());
 	}
 	
 	public void sort(List<FileData> filesData, SortingWay sortingWay) {
@@ -100,6 +100,7 @@ public abstract class StitchService {
 			while ((line = br.readLine()) != null) {
 				fileContent.append(line).append("\n");
 			}
+			fileContent.deleteCharAt(fileContent.lastIndexOf("\n"));
 		}
 		return fileContent;
 	}
