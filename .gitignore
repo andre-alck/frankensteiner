@@ -37,3 +37,4 @@ app/bin/main/.gitignore
 app/bin/test/.gitignore
 .gitignore
 .vscode/
+.vscode/settings.json
