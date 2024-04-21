@@ -51,7 +51,7 @@ class StitchServiceSQLImplTest {
 		stitchService.writeFile(filesData, new AlphabeticalSorting());
 		List<FileData> stitchedFileData = stitchService.readFiles(StitchServiceTestUtils.STITCHED_FILE_PATH);
 
-		String expectedContent = stitchService.getConcatenatedStringThroughFileData(filesData);
+		String expectedContent = stitchService.getConcatenatedStringThroughFileData(filesData) + "\n";
 		String stitchedFileContent = stitchService.getConcatenatedStringThroughFileData(stitchedFileData);
 
 		assertEquals(expectedContent, stitchedFileContent);

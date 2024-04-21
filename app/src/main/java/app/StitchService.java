@@ -100,7 +100,6 @@ public abstract class StitchService {
 			while ((line = br.readLine()) != null) {
 				fileContent.append(line).append("\n");
 			}
-			fileContent.deleteCharAt(fileContent.lastIndexOf("\n"));
 		}
 		return fileContent;
 	}
