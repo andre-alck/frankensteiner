@@ -14,7 +14,7 @@ public class SortingWayFactory {
 		}
 
 		if (string.equalsIgnoreCase(SortingWayFactory.MODIFICATION_DATE_ARG) || string.equalsIgnoreCase(SortingWayFactory.MODIFICATION_DATE_ARG_ABREVIATION_ARG)) {
-			return new AlphabeticalSorting();
+			return new ModificationDateSorting();
 		}
 
 		throw new UnsupportedSortingWayException();
