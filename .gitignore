@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -35,6 +36,5 @@ app/.project
 app/.settings/org.eclipse.buildship.core.prefs
 app/bin/main/.gitignore
 app/bin/test/.gitignore
-.gitignore
 .vscode/
 .vscode/settings.json
