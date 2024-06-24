@@ -95,7 +95,7 @@ public abstract class StitchService {
 
 	private StringBuilder readFileContent(InputStream inputStream) throws IOException {
 		StringBuilder fileContent = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "ISO-8859-1"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				fileContent.append(line).append("\n");

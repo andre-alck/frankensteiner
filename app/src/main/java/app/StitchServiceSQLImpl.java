@@ -14,7 +14,7 @@ public class StitchServiceSQLImpl extends StitchService {
 	@Override
 	protected void writeFile(List<FileData> filesData, SortingWay sortingWay) {
 		this.sort(filesData, sortingWay);
-		try (FileWriter stitchedFileWriter = new FileWriter(this.getResultFileName())) {
+		try (OutputStreamWriter stitchedFileWriter = new OutputStreamWriter(new FileOutputStream(this.getResultFileName()), Charset.forName("ISO-8859-1").newEncoder())) {
 			stitchedFileWriter.write(this.getConcatenatedStringThroughFileData(filesData));
 		} catch (IOException e) {
 			Logger.log(e);
